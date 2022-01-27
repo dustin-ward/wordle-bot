@@ -1,0 +1,19 @@
+{
+  "name": "wordlebot",
+  "version": "1.0.0",
+  "description": "Discord bot to track wordle scores",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustin-ward/wordle-bot.git"
+  },
+  "author": "Dustin Ward",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dustin-ward/wordle-bot/issues"
+  },
+  "homepage": "https://github.com/dustin-ward/wordle-bot#readme"
+}
