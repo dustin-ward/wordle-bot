@@ -24,7 +24,7 @@ module.exports = {
 
             console.log(users.length, "users found");
 
-            let fields = []
+            let userData = []
             users.forEach(u => {
                 let days = u.score.reduce((partialSum, a) => partialSum + a, 0);
                 let correct = days - u.score[0];
@@ -36,10 +36,33 @@ module.exports = {
                 sum += 6 * u.score[0];
 
                 let avgGuess = sum / days;
-                fields.push({name: u.tag, value: `Days completed: ${correct}/${days}\nAvg # of guesses: ${avgGuess.toFixed(2)}`});
+                userData.push({name: u.tag, correct: correct, days: days, avg: avgGuess.toFixed(2)});
             });
 
-            leaderboard.addFields(fields);
+            userData.sort((a,b) => {
+                if(a.avg < b.avg) {
+                    return -1;
+                }
+                else if(a.avg > b.avg) {
+                    return 1;
+                }
+                else {
+                    if(a.correct < b.correct) {
+                        return -1;
+                    }
+                    else if(a.correct > b.correct) {
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+            });
+
+            userData[0].name += " :crown:";
+            userData.forEach(u => {
+                leaderboard.addField(u.name, `Days completed: ${u.correct}/${u.days}\nAvg # of guesses: ${u.avg}`);
+            });
 
             interaction.channel.send({embeds: [leaderboard], files: ['./static/logo.png']});
             interaction.reply("Sent!");
