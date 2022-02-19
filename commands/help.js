@@ -5,6 +5,6 @@ module.exports = {
         .setName('help')
         .setDescription('help menu'),
     async execute(interaction) {
-        await interaction.reply(`HELP`);
+        await interaction.reply(`This bot will automatically record all of your wordle scores without any action needed. Use /leaderboard to see.`);
     },
 };
